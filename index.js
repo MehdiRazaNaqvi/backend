@@ -82,7 +82,7 @@ app.use(express.static(path.join(__dirname + "/public")));
 
 
 
-//app instance is passing in useRouter
+// app instance is passing in useRouter
 // so that we can call routes moule based
 // and pass it to app.use
 

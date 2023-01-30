@@ -17,6 +17,7 @@ const useRouter = (app) => {
   app.use("/campaign", require("./campaign"));
   app.use("/favorite", require("./favorite"));
   app.use("/fcm", require("./fcm"));
+  app.use("/openAi", require("./openAi"));
   //handle unknown routes
   app.use((req, res) => errorHandler(notFound, res));
 
