@@ -9,30 +9,10 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
-        lowercase: true,
-        unique: true
+        lowercase: true
     },
-    isVerified: {
-        type: Boolean,
-        default: false
-    },
-    emailToken: {
-        type: String,
-        default: null
-    },
-    resetPasswordToken: {
-        type: String,
-        default: null
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    first_name: {
-        type: String,
-        required: true,
-    },
-    last_name: {
+
+    name: {
         type: String,
         required: true,
     },
@@ -40,37 +20,25 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    role: {
-        type: String,
-        default: 'user'
-    },
-    profile: {
-        type: Schema.Types.ObjectId,
-        ref: 'Profile',
-        default: null
-    },
-    vender: {
-        type: Schema.Types.ObjectId,
-        ref: 'Vender',
-        default: null
 
+    address: {
+        type: String,
+        required: true,
     },
-    likes: [{
-        type: Schema.Types.ObjectId,
-        ref: "campaigns",
+    photo: {
+        type: String
+    },
+
+    workExperience: {
+        type: Array,
+        required: true,
+    },
+    qualification: {
+        type: Array,
+        required: true,
     }
-    ],
-    recentlyviewed: [{
-        type: Schema.Types.ObjectId,
-        ref: "campaigns",
-    }],
 
 
-    isTrainer: false,
-    userStatus: {
-        type: String,
-        default: "active"
-    },
 })
 
 //this middleware always run just before saving in database table
@@ -83,9 +51,9 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', async function (next) {
     try {
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(this.password, salt)
-        this.password = hashPassword
+        // const salt = await bcrypt.genSalt(10);
+        // const hashPassword = await bcrypt.hash(this.password, salt)
+        // this.password = hashPassword
         next()
 
     } catch (error) {

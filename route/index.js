@@ -18,10 +18,15 @@ const useRouter = (app) => {
   app.use("/favorite", require("./favorite"));
   app.use("/fcm", require("./fcm"));
   app.use("/openAi", require("./openAi"));
+
+  app.use("/saveRecord", require("./saveRecords"));
+
+
+
   //handle unknown routes
   app.use((req, res) => errorHandler(notFound, res));
 
- 
+
 
 };
 module.exports = useRouter;

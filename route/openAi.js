@@ -8,13 +8,13 @@ const campaign = require("../model/campaign");
 const Merchant = require("../model/merchant");
 const { Configuration, OpenAIApi } = require("openai");
 
-require ("dotenv").config()
+require("dotenv").config()
 
 const router = express.Router();
 
 
 const configuration = new Configuration({
-    apiKey: process.env.OPEN_AI_KEY,
+    apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
@@ -26,7 +26,7 @@ router.post("/getans", async (req, res) => {
 
         const response = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `${req.body.text}\n| skills |`,
+            prompt: `${req.body.text}\n| ${req.body.key} |`,
             temperature: 0.5,
             max_tokens: 4000,
             top_p: 1,
